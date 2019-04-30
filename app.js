@@ -136,13 +136,11 @@ function getCurrent() {
 
 function next() {
 	selected = getCurrent();
-	if (selected == null) {
-		select(squareNav[0]);
-	} else {
+	if (selected != null) {
 		index = squareNav.indexOf(selected);
 		index = (index + 1) % squareNav.length;
-		select(squareNav[index]);
-	}
+	} else { index = 0; }
+	select(squareNav[index]);
 }
 
 function notClicked(name) {
