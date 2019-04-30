@@ -36,9 +36,16 @@ h1 {
 	font-size: 200%;
 }
 
+#reset {
+	text-align: center;
+}
+
 #message {
-	display: inline-block;
+	/* display: inline-block; */
+	padding: 10px;
+	text-align: center;
 	width: 20%;
+	color: white;
 }
 
 #stripe {

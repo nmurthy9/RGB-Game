@@ -8,9 +8,10 @@ var h1 = document.querySelector("h1");
 var resetButton = document.querySelector("#reset");
 var modeButtons = document.querySelectorAll(".mode");
 
-var squareOrder = ["#sq1", "#sq2", "#sq3", "#sq4", "#sq5", "#sq6"];
+//
+var squareNav = ["#sq1", "#sq2", "#sq3", "#sq4", "#sq5", "#sq6"];
 var clicked = [];
-var index;
+//
 
 init();
 
@@ -72,6 +73,11 @@ function reset(){
 		}
 	}
 	h1.style.background = "steelblue";
+	//
+	squareNav = ["#sq1", "#sq2", "#sq3", "#sq4", "#sq5", "#sq6"];
+	clicked = [];
+	$(".square").removeClass("current");
+	//
 }
 
 resetButton.addEventListener("click", function(){
@@ -113,33 +119,29 @@ function randomColor(){
 	return "rgb(" + r + ", " + g + ", " + b + ")";
 }
 
+////////////////////////////////////////////////////////////////////////////////
 
-
-function selectItem(name) {
-	$("button").removeClass("cursor");
-	$(name).addClass("cursor");
-	console.log("current...",name);
-	console.log("choices left",squareOrder);
+function select(name) {
+	$(".square").removeClass("current");
+	$(name).addClass("current");
 }
 
-function getSelectedItem() {
-	selected = $(".cursor"); // this returns an array
-	if (selected.length == 0) {
-		return null;
-	}
-	else {
+function getCurrent() {
+	selected = $(".current"); // this returns an array
+	if (selected.length != 0) {
 		return "#" + selected.first().attr('id');
 	}
+	return null;
 }
 
-function selectNext() {
-	selected = getSelectedItem();
+function next() {
+	selected = getCurrent();
 	if (selected == null) {
-		selectItem(squareOrder[0]);
+		select(squareNav[0]);
 	} else {
-		index = squareOrder.indexOf(selected);
-		index = (index + 1) % squareOrder.length;
-		selectItem(squareOrder[index]);
+		index = squareNav.indexOf(selected);
+		index = (index + 1) % squareNav.length;
+		select(squareNav[index]);
 	}
 }
 
@@ -152,22 +154,23 @@ function notClicked(name) {
 	return true;
 }
 
-function clickSelectedItem() {
-	whichButton = getSelectedItem();
-	console.log("selecting...",whichButton);
-	if (whichButton != null && notClicked("#" + whichButton)) {
-		$(whichButton).click();
-		indexToRemove = squareOrder.indexOf("#"+$(whichButton).first().attr('id'));
-		console.log("removing index...", indexToRemove);
-		squareOrder.splice(indexToRemove, 1);
-		clicked.push("#" + whichButton);
+function clickCurrent() {
+	currentButton = getCurrent();
+	if (currentButton != null && notClicked("#" + currentButton)) {
+		$(currentButton).click();
+		id = "#"+$(currentButton).first().attr('id');
+		indexToRemove = squareNav.indexOf(id);
+		squareNav.splice(indexToRemove, 1);
+		clicked.push("#" + currentButton);
 	}
 }
 
 $(document).keypress(function(event) {
 	if (event.key == "a") {
-		selectNext();
+		next();
 	} else if (event.key == "d") {
-		clickSelectedItem();
+		clickCurrent();
+	} else if (event.key == "r") {
+		reset();
 	}
 })
