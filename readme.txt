@@ -10,3 +10,4 @@ Controls:
 
 ** Tips **
   - Navigating with the 'a' key goes from left to right starting on the top row and moving to the bottom.
+  - Numbers on the color buttons will be highlighted when the are navigated through.
