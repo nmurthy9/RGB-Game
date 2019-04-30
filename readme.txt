@@ -1,4 +1,6 @@
 To access our game go to: https://nmurthy9.github.io/RGB-Game/
+OR
+Open the project3.html file
 
 The goal of the RGB game is to guess which color is represented by the R,G,B values given.
 Cycle through the colors and choose the correct match!
