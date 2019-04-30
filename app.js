@@ -123,7 +123,10 @@ function randomColor(){
 
 function select(name) {
 	$(".square").removeClass("current");
+	$(".square").removeClass("highlight");
 	$(name).addClass("current");
+	$(name).addClass("highlight");
+	//$(name).style.color = "#FFFFFF";
 }
 
 function getCurrent() {
@@ -160,6 +163,7 @@ function clickCurrent() {
 		indexToRemove = squareNav.indexOf(id);
 		squareNav.splice(indexToRemove, 1);
 		clicked.push("#" + currentButton);
+		$(currentButton).removeClass("highlight");
 	}
 }
 
