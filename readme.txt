@@ -1,4 +1,4 @@
-To access our game go to: https://nmurthy9.github.io/RGB-Game/
+To access our game go to: https://nmurthy9.github.io/RGB-Game/project3.html
 OR
 Open the project3.html file
 
